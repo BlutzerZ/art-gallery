@@ -3,7 +3,7 @@
     <section class="flex flex-col min-h-screen bg-primary lg:flex-row">
         <!-- Bagian kiri: Gambar -->
         <div class="items-center justify-center hidden lg:flex lg:flex-col lg:w-1/2">
-            <img src="/assets/img/udinus.png" alt="Descriptive Image" class="max-w-xs">
+            <img src="{{ asset('assets/img/udinus.png') }}" alt="Descriptive Image" class="max-w-xs">
             <h6 class="mt-12 text-4xl font-bold text-center font-dancingScript text-light">Udinus Art Showcase</h6>
         </div>
 
@@ -13,7 +13,7 @@
             <form method="POST" action="{{ route('auth.login') }}"
                 class="flex flex-col w-full md:w-2/3 bg-white p-[24px_16px] gap-8 rounded-[22px] items-center md:py-[52px] lg:px-10">
                 @csrf
-                <img src="/assets/img/udinus.png" alt="Udinus" class="w-1/6 mx-auto md:w-1/5 lg:hidden">
+                <img src="{{ asset('assets/img/udinus.png') }}" alt="Udinus" class="w-1/6 mx-auto md:w-1/5 lg:hidden">
                 <div class="flex flex-col gap-1 text-center mt-[-22px] md:mt-0">
                     <h1 class="font-semibold text-2xl md:text-3xl leading-[42px]">Sign In</h1>
                     <p class="text-sm leading-[25px] tracking-[0.6px] text-darkGrey md:mt-3 md:text-base">Welcome Back!
@@ -31,7 +31,7 @@
                         <div
                             class="flex items-center gap-3 p-[16px_12px] border border-light rounded-xl focus-within:border-primary transition-all duration-300">
                             <div class="flex w-4 h-4 shrink-0">
-                                <img src="assets/icons/sms.svg" alt="icon">
+                                <img src="{{ asset('assets/icons/sms.svg') }}" alt="icon">
                             </div>
                             <input type="text" id="username" name="username"
                                 class="appearance-none outline-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px]"
@@ -43,7 +43,7 @@
                         <div
                             class="flex items-center gap-3 p-[16px_12px] border border-[#BFBFBF] rounded-xl focus-within:border-primary transition-all duration-300">
                             <div class="flex w-4 h-4 shrink-0">
-                                <img src="assets/icons/password-lock.svg" alt="icon">
+                                <img src="{{ asset('assets/icons/password-lock.svg') }}" alt="icon">
                             </div>
                             <input type="password" id="password" name="password"
                                 class="appearance-none outline-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px]"

@@ -16,6 +16,7 @@ export default {
                 youngdanger: "#CB8E74",
                 light: "#EFECE2",
                 primary: "#003676",
+                youngPrimary: "#C0D6DD",
                 warning: "#E2BD5F",
             },
         },

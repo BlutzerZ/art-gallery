@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserManagementController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'title' => 'dashboard'
+    ]);
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.showLogin');
