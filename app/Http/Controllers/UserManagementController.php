@@ -11,7 +11,7 @@ class UserManagementController extends Controller
     public function show()
     {
         $users = User::all();
-        return view('dashboard.userManagement.show2', compact('users'));
+        return view('dashboard.userManagement.show', compact('users'));
     }
 
     public function edit(Request $request)
