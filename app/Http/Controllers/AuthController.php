@@ -55,6 +55,19 @@ class AuthController extends Controller
                 ]);
             }
 
+            if ($user->name == "Blank") {
+                $accessToken = $response['data']['access_token'];
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $accessToken,
+                ])->get('https://api.dinus.ac.id/api/v1/siadin/profile');
+                $responseData = $response->json();
+                $name = $responseData['data']['nama'];
+                
+                $user->name = $name;
+                $user->save();
+
+            }
+
             Auth::login($user);
 
             return redirect('/dashboard');
