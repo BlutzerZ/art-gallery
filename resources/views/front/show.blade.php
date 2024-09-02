@@ -2,7 +2,7 @@
 @section('content')
     <section id="content" class="flex flex-col w-full min-h-screen gap-8 pb-5 mx-auto bg-youngPrimary">
         <nav class="relative flex items-center w-full px-4 mt-8">
-            <a href="{{ route('gallery.favorite') }}" class="absolute pl-1">
+            <a href="{{ route('front') }}" class="absolute pl-1">
                 <img src="{{ asset('assets/icons/back.png') }}" alt="back">
             </a>
             <p class="flex-1 font-semibold text-center">Detail Image</p>
