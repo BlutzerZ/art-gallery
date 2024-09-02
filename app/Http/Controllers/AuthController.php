@@ -26,35 +26,60 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required|string',
+            'nim' => 'required|string',
             'password' => 'required|string',
         ]);
 
         $response = Http::post('https://api.dinus.ac.id/api/v1/siadin/login', [
-            'username' => $request->username,
+            'username' => $request->nim,
             'password' => $request->password,
         ]);
 
         if ($response->ok()) {
-            $user = User::where('nim', $request->username)->first();
+            $responseData = $response->json();
+            $accessToken = $responseData['data']['access_token'] ?? null;
 
-            if (!$user) {
-                $user = User::create([
-                    'nim' => $request->username,
-                    'name' => 'Blank',
-                    'password' => Hash::make(Str::random(16)),
-                    'role' => 'visitor',
-                ]);
+            if ($accessToken) {
+                // Lakukan GET request ke API profil dengan access_token
+                $profileResponse = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $accessToken,
+                    'accept' => 'application/json',
+                ])->get('https://api.dinus.ac.id/api/v1/siadin/profile');
+
+                if ($profileResponse->ok()) {
+                    $profileData = $profileResponse->json();
+                    $fullName = $profileData['data']['nama'];
+
+                    // Cari user berdasarkan NIM
+                    $user = User::where('nim', $request->nim)->first();
+
+                    // Jika user tidak ada, buat user baru
+                    if (!$user) {
+                        $user = User::create([
+                            'nim' => $request->nim,
+                            'name' => $fullName,
+                            'password' => Hash::make(Str::random(16)),
+                            'role' => 'visitor',
+                        ]);
+                    } else {
+                        // Update nama jika user ditemukan dengan nama 'Not Registered'
+                        if ($user->name === 'Not Registered') {
+                            $user->update(['name' => $fullName]);
+                        }
+                    }
+
+                    Auth::login($user);
+                    return redirect('/dashboard');
+                } else {
+                    return back()->withErrors(['loginError' => 'Failed to fetch profile data']);
+                }
+            } else {
+                return back()->withErrors(['loginError' => 'Failed to obtain access token']);
             }
-
-            Auth::login($user);
-
-            return redirect('/dashboard');
         } else {
             return back()->withErrors(['loginError' => 'Invalid credentials']);
         }
     }
-
     public function logout(Request $request)
     {
         Auth::logout();

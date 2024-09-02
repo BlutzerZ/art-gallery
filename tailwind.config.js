@@ -10,6 +10,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ["Poppins", "Roboto", "sans-serif"],
+                dancingScript: ["Dancing Script", "cursive"],
             },
             colors: {
                 danger: "#9E3F39",

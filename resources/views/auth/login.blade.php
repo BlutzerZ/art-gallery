@@ -33,9 +33,9 @@
                             <div class="flex w-4 h-4 shrink-0">
                                 <img src="assets/icons/sms.svg" alt="icon">
                             </div>
-                            <input type="text" id="username" name="username"
+                            <input type="text" id="nim" name="nim"
                                 class="appearance-none outline-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px]"
-                                placeholder="A11.2000.12345" value="{{ old('username') }}">
+                                placeholder="A11.2000.12345" value="{{ old('nim') }}">
                         </div>
                     </div>
                     <div class="flex flex-col w-full gap-1">
