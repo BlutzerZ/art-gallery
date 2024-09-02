@@ -34,7 +34,6 @@ class ManageParticipantsController extends Controller
     {
         $request->validate([
             'nim' => 'required|string',
-            'name' => 'required|string',
         ]);
 
         if (User::where('nim', $request->nim)->exists()) {
@@ -44,7 +43,7 @@ class ManageParticipantsController extends Controller
         } else {
             $user = [
                 'nim' => $request->input('nim'),
-                'name' => $request->input('name'),
+                'name' => 'Blank',
                 'password' => Hash::make(Str::random(16)),
                 'role' => 'participant',
             ];
@@ -80,7 +79,6 @@ class ManageParticipantsController extends Controller
     {
         $request->validate([
             'nim' => 'required|string',
-            'name' => 'required|string',
         ]);
 
         if (User::where('nim', $request->nim)->where('id', '!=', $id)->exists()) {
@@ -90,7 +88,6 @@ class ManageParticipantsController extends Controller
         } else {
             $user = [
                 'nim' => $request->input('nim'),
-                'name' => $request->input('name'),
             ];
 
             User::where('id', $id)->update($user);

@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return redirect('/dashboard');
+            return redirect('/');
         }
         else {
             return view('auth.login', [
@@ -65,14 +65,14 @@ class AuthController extends Controller
                 
                 $user->name = $name;
                 $user->save();
-
             }
 
             Auth::login($user);
 
-            return redirect('/dashboard');
+            return redirect('/')->with('success', 'Logged in successfully');
+    
         } else {
-            return back()->withErrors(['loginError' => 'Invalid credentials']);
+            return back()->withErrors(['loginError' => 'Invalid cre 1dentials']);
         }
     }
 
