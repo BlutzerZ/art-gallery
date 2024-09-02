@@ -68,6 +68,7 @@
                                         <span
                                             class="text-sm text-darkGrey tracking-035">{{ substr($imageNew->description, 0, 50) }}...</span>
                                     </div>
+                                    <p class="text-xs">By {{ ucwords(strtolower($imageNew->user->name)) }}</p>
                                 </div>
                                 <div class="flex flex-col gap-1 text-right">
                                     </p>
@@ -126,6 +127,7 @@
                                         <span
                                             class="text-sm text-darkGrey tracking-035">{{ substr($image->description, 0, 50) }}...</span>
                                     </div>
+                                    <p class="text-xs">By {{ ucfirst(strtolower($image->user->name)) }}</p>
                                 </div>
                                 <div class="flex flex-col gap-1 text-right">
                                     <div class="flex items-center justify-end gap-1">
