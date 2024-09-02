@@ -8,12 +8,10 @@ use App\Models\User;
 
 class UserManagementController extends Controller
 {
-    public function show()
+    public function index()
     {
         $users = User::all();
-        return view('dashboard.userManagement.show', compact('users'), [
-            'title' => 'User Management'
-        ]);
+        return view('dashboard.userManagement.index', compact('users'));
     }
 
     public function edit(Request $request)
@@ -29,9 +27,9 @@ class UserManagementController extends Controller
             $user->role = $request->role;
             $user->save();
 
-            return redirect()->route('userManagement.show')->with('success', 'Role updated successfully');
+            return redirect()->route('userManagement.index')->with('success', 'Role updated successfully');
         }
 
-        return redirect()->route('userManagement.show')->with('error', 'User not found');
+        return redirect()->route('userManagement.index')->with('error', 'User not found');
     }
 }
