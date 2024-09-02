@@ -30,7 +30,7 @@
         @endif
 
         @if ($errors->any())
-            @foreach ($errors as $error)
+            @foreach ($errors->all() as $error)
                 <div id="toast-danger"
                     class="fixed top-2 right-4 z-50 flex items-center w-full max-w-sm mx-auto p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
                     role="alert">
@@ -56,63 +56,47 @@
                     </button>
                 </div>
             @endforeach
-
         @endif
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <caption
-                    class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                    Participants
-                    <div class="px-2 sm:px-4 flex justify-end">
-                        <a href="{{ route('manage-participants.create') }}"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">+
-                            New Participant</a>
-                    </div>
-                </caption>
-                <thead class="text-xs text-gray-700 uppercase bg-light dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            NIM
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $user->id }}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{ $user->nim }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $user->name }}
-                            </td>
-                            <td class="px-6 py-4 font-medium flex gap-2">
-                                <a href="{{ route('manage-participants.edit', $user->id) }}"
-                                    class="text-blue-600 hover:underline mr-4">Edit</a>
-                                <form action="{{ route('manage-participants.destroy', $user->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class=" text-red-600 hover:underline">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-         </div>
-      </div>
-    </div>  
+            <form class="max-w-6xl mx-auto w-full p-4" action="{{ route('gallery.update', $image->id) }}"
+                method="post" enctype='multipart/form-data'>
+                @csrf
+                @method('PUT')
+                <p
+                    class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    Edit Image Form
+                </p>
+                <div class="mb-5">
+                    <label for="image"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                    <img src="{{ $image->url_image }}" alt="{{ $image->title }}" class="w-80 mb-3 mx-auto">
+                    <input type="file" id="image" name="image"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        placeholder="A11.2000.12345" />
+                    <small>If you upload a new image, the old one will be replaced.</small>
+                </div>
+                <div class="mb-5">
+                    <label for="title"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                    <input type="text" id="title" name="title"
+                        value="{{ $image->title }}"
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        placeholder="Enter your title" required />
+                </div>
+                <div class="mb-5">
+                    <label for="description"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <input type="text" id="description" name="description"
+                        value="{{ $image->description }}"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        placeholder="Enter image description" required />
+                </div>
+                <button type="submit"
+                    class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                    Update
+                </button>
+            </form>
+        </div>
+    </div>
 @endsection
