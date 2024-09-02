@@ -4,12 +4,12 @@ export default {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./node_modules/flowbite/**/*.js",
     ],
     theme: {
         extend: {
             fontFamily: {
-                poppins: "Poppins",
-                dancingScript: "'Dancing Script', cursive",
+                sans: ["Poppins", "Roboto", "sans-serif"],
             },
             colors: {
                 danger: "#9E3F39",
@@ -21,6 +21,5 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [require("flowbite/plugin")],
 };
-
