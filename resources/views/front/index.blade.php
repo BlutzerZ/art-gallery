@@ -23,16 +23,20 @@
                         <div class="font-medium truncate">A11.2022.12654</div>
                     </div>
                     <ul class="py-2 text-sm text-light">
+                        @organizer
                         <li>
-                            <a href="#"
+                            <a href="{{ route('userManagement.index') }}"
                                 class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">Dashboard</a>
                         </li>
+                        @endorganizer
+                        @participant
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
+                            <a href="{{ route('gallery.index') }}" class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
                                 Art</a>
                         </li>
+                        @endparticipant
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
+                            <a href="{{ route('favorite') }}" class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
                                 Favorite</a>
                         </li>
                     </ul>
