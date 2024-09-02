@@ -29,24 +29,24 @@
                     <div class="flex flex-col w-full gap-1">
                         <p class="font-semibold md:text-base">NIM</p>
                         <div
-                            class="flex items-center gap-3 p-[16px_12px] border border-light rounded-xl focus-within:border-primary transition-all duration-300">
+                            class="flex items-center gap-3 p-[8px_12px] border border-light rounded-xl focus-within:border-primary transition-all duration-300">
                             <div class="flex w-4 h-4 shrink-0">
                                 <img src="{{ asset('assets/icons/sms.svg') }}" alt="icon">
                             </div>
                             <input type="text" id="username" name="username"
-                                class="appearance-none outline-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px]"
+                                class="appearance-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px] border-none focus:ring-0"
                                 placeholder="A11.2000.12345" value="{{ old('username') }}">
                         </div>
                     </div>
                     <div class="flex flex-col w-full gap-1">
                         <p class="font-semibold md:text-base">Password</p>
                         <div
-                            class="flex items-center gap-3 p-[16px_12px] border border-[#BFBFBF] rounded-xl focus-within:border-primary transition-all duration-300">
+                            class="flex items-center gap-3 p-[8px_12px] border border-[#BFBFBF] rounded-xl focus-within:border-primary transition-all duration-300">
                             <div class="flex w-4 h-4 shrink-0">
                                 <img src="{{ asset('assets/icons/password-lock.svg') }}" alt="icon">
                             </div>
                             <input type="password" id="password" name="password"
-                                class="appearance-none outline-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px]"
+                                class="appearance-none outline-none w-full text-sm placeholder:text-[#BFBFBF] tracking-[0.35px] border-none focus:ring-0"
                                 placeholder="*****">
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     class="bg-primary p-[16px_24px] w-full max-w-[311px] md:max-w-[411px] rounded-[10px] text-center text-white font-semibold transition-all duration-300 hover:bg-warning hover:text-primary">Sign
                     In</button>
 
-                <p class="text-sm text-center tracking-035 text-darkGrey"><a href="/dashboard"
+                <p class="text-sm text-center tracking-035 text-darkGrey"><a href="/"
                         class="text-blue-500 font-semibold tracking-[0.6px]">Back to Home</a></p>
             </form>
         </div>

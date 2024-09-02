@@ -13,36 +13,54 @@
 
                 <div class="flex flex-col gap-1">
                     <p class="text-xs tracking-035">Welcome!</p>
-                    <p class="font-semibold">Hello, Guest!</p>
+                    <p class="font-semibold">
+                        @if (Auth::check())
+                            Hello, {{ ucwords(strtolower(Auth::user()->name)) }}
+                        @else
+                            Hello, Guest!
+                        @endif
+                    </p>
                 </div>
 
                 <!-- Dropdown menu -->
                 <div id="dropdownInformation"
                     class="absolute left-0 z-10 hidden mt-2 divide-y rounded-lg shadow divide-light bg-primary top-full w-44 peer-checked:block">
                     <div class="px-4 py-3 text-sm text-light">
-                        <div class="font-medium truncate">A11.2022.12654</div>
+                        <div class="font-medium truncate">
+                            @if (Auth::check())
+                                {{ Auth::user()->nim }}
+                            @else
+                            @endif
+                        </div>
                     </div>
                     <ul class="py-2 text-sm text-light">
                         @organizer
-                        <li>
-                            <a href="{{ route('userManagement.index') }}"
-                                class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">Dashboard</a>
-                        </li>
+                            <li>
+                                <a href="{{ route('userManagement.index') }}"
+                                    class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">Dashboard</a>
+                            </li>
                         @endorganizer
                         @participant
-                        <li>
-                            <a href="{{ route('gallery.index') }}" class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
-                                Art</a>
-                        </li>
+                            <li>
+                                <a href="{{ route('gallery.index') }}"
+                                    class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
+                                    Art</a>
+                            </li>
                         @endparticipant
                         <li>
-                            <a href="{{ route('favorite') }}" class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
+                            <a href="{{ route('favorite') }}"
+                                class="block px-4 py-2 hover:bg-warning text-light hover:text-primary">My
                                 Favorite</a>
                         </li>
                     </ul>
                     <div class="py-2">
-                        <a href="#"
-                            class="block px-4 py-2 text-sm hover:bg-warning text-light hover:text-primary">Logout</a>
+                        @if (Auth::check())
+                            <a href="/logout"
+                                class="block px-4 py-2 text-sm hover:bg-warning text-light hover:text-primary">Logout</a>
+                        @else
+                            <a href="{{ route('auth.showLogin') }}"
+                                class="block px-4 py-2 text-sm hover:bg-warning text-light hover:text-primary">Sign In</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -68,6 +86,7 @@
                                         <span
                                             class="text-sm text-darkGrey tracking-035">{{ substr($imageNew->description, 0, 50) }}...</span>
                                     </div>
+                                    <p class="text-xs">By {{ ucwords(strtolower($imageNew->user->name)) }}</p>
                                 </div>
                                 <div class="flex flex-col gap-1 text-right">
                                     </p>
@@ -126,6 +145,7 @@
                                         <span
                                             class="text-sm text-darkGrey tracking-035">{{ substr($image->description, 0, 50) }}...</span>
                                     </div>
+                                    <p class="text-xs">By {{ ucfirst(strtolower($image->user->name)) }}</p>
                                 </div>
                                 <div class="flex flex-col gap-1 text-right">
                                     <div class="flex items-center justify-end gap-1">

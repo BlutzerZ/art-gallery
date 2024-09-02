@@ -25,8 +25,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-1 text-right">
-                            <div class="flex items-center justify-end gap-1">
+                        <div class="flex items-center justify-between gap-1">
+                            <p class="text-xs text-left">By {{ ucwords(strtolower($image->user->name)) }}</p>
+                            <div class="flex items-center gap-1">
                                 <form action="{{ route('gallery.favorite') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="image_id" value="{{ $image->id }}">
