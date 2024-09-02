@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManageParticipantsController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\GalleryController;
 
@@ -17,6 +18,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard/user-management', [UserManagementController::class, 'index'])->name('userManagement.index');
     Route::post('/dashboard/user-management/edit', [UserManagementController::class, 'edit'])->name('userManagement.edit');
+
+    Route::resource('/dashboard/manage-participants', ManageParticipantsController::class);
 });
 
 // Route::middleware(['auth', 'role:participant'])->group(function() {
@@ -28,4 +31,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard/gallery/edit/{id}', [GalleryController::class, 'edit'])->name('gallery.edit');
     Route::put('/dashboard/gallery/edit/{id}', [GalleryController::class, 'update'])->name('gallery.update');
     Route::delete('/dashboard/gallery/delete/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    
 });
