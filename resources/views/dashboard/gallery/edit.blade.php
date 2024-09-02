@@ -65,7 +65,7 @@
                 @method('PUT')
                 <p
                     class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                    Create Image Form
+                    Edit Image Form
                 </p>
                 <div class="mb-5">
                     <label for="image"
