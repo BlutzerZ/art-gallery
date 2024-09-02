@@ -15,9 +15,11 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             return redirect('/dashboard');
-        } 
+        }
         else {
-            return view('auth.login');
+            return view('auth.login', [
+                'title' => "login"
+            ]);
         }
     }
 
@@ -39,9 +41,9 @@ class AuthController extends Controller
             if (!$user) {
                 $user = User::create([
                     'nim' => $request->username,
-                    'name' => 'Blank', 
+                    'name' => 'Blank',
                     'password' => Hash::make(Str::random(16)),
-                    'role' => 'visitor', 
+                    'role' => 'visitor',
                 ]);
             }
 

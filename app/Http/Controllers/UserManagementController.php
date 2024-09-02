@@ -12,6 +12,7 @@ class UserManagementController extends Controller
     {
         $users = User::all();
         return view('dashboard.userManagement.show', compact('users'));
+
     }
 
     public function edit(Request $request)
@@ -20,16 +21,16 @@ class UserManagementController extends Controller
             'id' => 'required|exists:users,id',
             'role' => 'required|string',
         ]);
-    
+
         $user = User::find($request->id);
-    
+
         if ($user) {
             $user->role = $request->role;
             $user->save();
-    
+
             return redirect()->route('userManagement.show')->with('success', 'Role updated successfully');
         }
-    
+
         return redirect()->route('userManagement.show')->with('error', 'User not found');
     }
 }
